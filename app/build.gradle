@@ -2,6 +2,8 @@ apply plugin: 'com.android.application'
 
 apply plugin: 'kotlin-android'
 
+apply plugin: 'kotlin-kapt' // For annotationProcessor
+
 apply plugin: 'kotlin-android-extensions'
 
 android {
@@ -33,4 +35,52 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+
+    // Architecture components
+    // LiveData + ViewModel
+    implementation "androidx.lifecycle:lifecycle-extensions:$rootProject.lifecycle"
+    annotationProcessor "androidx.lifecycle:lifecycle-compiler:$rootProject.lifecycle"
+
+    // Room Database
+    implementation "androidx.room:room-runtime:$rootProject.room"
+    annotationProcessor "androidx.room:room-compiler:$rootProject.room"
+    kapt "androidx.room:room-compiler:$rootProject.room"
+
+    // Room testing
+    androidTestImplementation "androidx.room:room-testing:$rootProject.room"
+
+    /* Other */
+
+    // Dagger for dependency injection.
+    implementation "com.google.dagger:dagger:$rootProject.dagger"
+    implementation "com.google.dagger:dagger-android:$rootProject.dagger"
+    implementation "com.google.dagger:dagger-android-support:$rootProject.dagger"
+    kapt "com.google.dagger:dagger-compiler:$rootProject.dagger"
+    kapt "com.google.dagger:dagger-android-processor:$rootProject.dagger"
+
+    // Dependencies for coroutines.
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$rootProject.coroutines"
+    // Dependency is for the special UI context that can be passed to coroutine builders that use
+    // the main thread dispatcher to dispatch events on the main thread.
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$rootProject.coroutines"
+
+    // 3rd party:
+    // HTTP client - Retrofit with OkHttp.
+    implementation ("com.squareup.retrofit2:retrofit:$rootProject.retrofit") {
+        // Exclude Retrofit’s OkHttp peer-dependency module and define your own module import.
+        exclude module: 'okhttp'
+    }
+    implementation "com.squareup.okhttp3:okhttp:$rootProject.okhttp"
+
+    // Glide
+    implementation "com.github.bumptech.glide:glide:$rootProject.glide"
+    kapt "com.github.bumptech.glide:compiler:$rootProject.glide"
+    // Glide's OkHttp3 integration.
+    implementation "com.github.bumptech.glide:okhttp3-integration:$rootProject.glide"+"@aar"
+
+    // For providing logs that can be useful for debugging.
+    implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.okhttp"
+    // JSON converter Gson for JSON to Java object mapping.
+    implementation "com.squareup.retrofit2:converter-gson:$rootProject.retrofit"
+
 }
