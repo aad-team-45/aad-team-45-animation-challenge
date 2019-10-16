@@ -29,13 +29,13 @@ task clean(type: Delete) {
 
 ext {
     room = '2.2.0-beta01'
-    archLifecycle = '2.2.0-alpha05'
+    lifecycle = '2.2.0-alpha05'
     androidxArchVersion = '2.1.0'
     coroutines = '1.2.0'
-    dagger = ''
-    glide = ''
-    okhttp = ''
+    dagger = '2.23.2'
+    glide = '4.10.0'
+    okhttp = '3.14.3'
     recyclerview = ''
-    retrofit=''
+    retrofit='2.6.2'
 
 }
