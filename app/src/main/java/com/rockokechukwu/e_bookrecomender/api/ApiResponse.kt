@@ -8,7 +8,7 @@ import retrofit2.Response
 /**
  * Common class used by API responses. ApiResponse is a simple wrapper around the Retrofit2.Call
  * class that convert responses to instances of LiveData.
- * @param <CoinMarketCapType> the type of the response object
+ * @param <T> the type of the response object
 </T> */
 @Suppress("unused") // T is used in extending classes
 sealed class ApiResponse<T> {
@@ -42,8 +42,8 @@ sealed class ApiResponse<T> {
 /**
  * Separate class for HTTP 204 resposes so that we can make ApiSuccessResponse's body non-null.
  */
-class ApiEmptyResponse<CoinMarketCapType> : ApiResponse<CoinMarketCapType>()
+class ApiEmptyResponse<T> : ApiResponse<T>()
 
-data class ApiSuccessResponse<CoinMarketCapType>(val body: CoinMarketCapType) : ApiResponse<CoinMarketCapType>()
+data class ApiSuccessResponse<T>(val body: T) : ApiResponse<T>()
 
 data class ApiErrorResponse<CoinMarketCapType>(val errorMessage: String) : ApiResponse<CoinMarketCapType>()

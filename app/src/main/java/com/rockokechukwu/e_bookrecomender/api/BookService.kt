@@ -12,11 +12,10 @@ interface BookService {
     // baseUrl + volumes + query parameter.
     @GET("volumes")
     // Annotation @Query is used to define query parameter for request. It is possible to pass
-    // multiple query parameters too. Finally the request url will look like that
-    // https://sandbox-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?convert=EUR&limit=5000
+    // multiple query parameters too.
     fun getBooks(@Query("q") searchTerm: String,
                  @Query("filter") filter: String,
                  @Query("field") field: String):
-            LiveData<ApiResponse<List<Volume<Items>>>>
+            LiveData<ApiResponse<List<Volume>>>
     // The return type for this function is Call with its type Items.
 }

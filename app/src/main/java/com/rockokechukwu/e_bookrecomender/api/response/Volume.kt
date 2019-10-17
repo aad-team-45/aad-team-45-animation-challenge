@@ -4,7 +4,7 @@ import IndustryIdentifiers
 import ReadingModes
 import com.google.gson.annotations.SerializedName
 
-data class Volume<T>(
+data class Volume(
 
     @SerializedName("kind") val kind : String,
     @SerializedName("totalItems") val totalItems : Int,
