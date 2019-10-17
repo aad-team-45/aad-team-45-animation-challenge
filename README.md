@@ -4,7 +4,7 @@
 aad-team-45-animation-challenge is an ebook recommender android app that displays list of ebook on various IT fields base on a user preference. Users can add a book to his favourite list.
 _______________________________________________________
 ## Functionality
-The app is consisted of a Splash screen, ItTopicsFragment, listOfEbooksFragment and an EbookDetailsFragment.
+The app consist of a Splash screen, ItTopicsFragment, listOfEbooksFragment and an EbookDetailsFragment.
 #### ItTopicsFragment
 This fragment displays some common core topics in programming.
 #### ListOfEbooksFragment
