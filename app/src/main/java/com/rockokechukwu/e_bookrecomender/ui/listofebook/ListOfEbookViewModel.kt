@@ -1,4 +1,4 @@
-package com.rockokechukwu.e_bookrecomender
+package com.rockokechukwu.e_bookrecomender.ui.listofebook
 
 import androidx.lifecycle.ViewModel
 

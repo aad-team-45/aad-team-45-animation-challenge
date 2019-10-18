@@ -1,2 +1,20 @@
 package com.rockokechukwu.e_bookrecomender.utilities
 
+import androidx.lifecycle.LiveData
+
+/**
+ * A LiveData class that has null value.
+ */
+class AbsentLiveData<T : Any?> private constructor() : LiveData<T>() {
+
+    init {
+        // Use post instead of set since this can be created on any thread.
+        postValue(null)
+    }
+
+    companion object {
+        fun <T> create(): LiveData<T> {
+            return AbsentLiveData()
+        }
+    }
+}

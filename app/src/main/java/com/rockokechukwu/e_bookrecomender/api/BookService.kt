@@ -1,7 +1,6 @@
 package com.rockokechukwu.e_bookrecomender.api
 
 import androidx.lifecycle.LiveData
-import com.rockokechukwu.e_bookrecomender.api.response.Items
 import com.rockokechukwu.e_bookrecomender.api.response.Volume
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -14,8 +13,7 @@ interface BookService {
     // Annotation @Query is used to define query parameter for request. It is possible to pass
     // multiple query parameters too.
     fun getBooks(@Query("q") searchTerm: String,
-                 @Query("filter") filter: String,
-                 @Query("field") field: String):
-            LiveData<ApiResponse<List<Volume>>>
-    // The return type for this function is Call with its type Items.
+                 @Query("filter") filter: String):
+            LiveData<ApiResponse<Volume>>
+
 }
