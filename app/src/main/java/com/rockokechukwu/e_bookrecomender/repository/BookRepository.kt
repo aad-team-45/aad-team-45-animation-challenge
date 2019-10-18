@@ -26,7 +26,7 @@ class BookRepository @Inject constructor(
     private val bookService: BookService
 ) {
 
-    fun search(query: String): LiveData<Resource<List<Ebook>>> {
+    fun getEbookList(query: String): LiveData<Resource<List<Ebook>>> {
         return object : NetworkBoundResource<List<Ebook>, Volume>(appExecutors) {
 
             override fun saveCallResult(item: Volume) {
