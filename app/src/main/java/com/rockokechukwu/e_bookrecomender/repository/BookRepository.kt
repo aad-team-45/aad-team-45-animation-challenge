@@ -10,6 +10,7 @@ import com.rockokechukwu.e_bookrecomender.api.response.Volume
 import com.rockokechukwu.e_bookrecomender.db.EbookDao
 import com.rockokechukwu.e_bookrecomender.db.EbookDb
 import com.rockokechukwu.e_bookrecomender.utilities.AbsentLiveData
+import com.rockokechukwu.e_bookrecomender.utilities.FILTER_QUERY
 import com.rockokechukwu.e_bookrecomender.vo.Resource
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -50,7 +51,7 @@ class BookRepository @Inject constructor(
                 }
             }
 
-            override fun createCall() = bookService.getBooks(query)
+            override fun createCall() = bookService.getBooks(query, FILTER_QUERY)
 
             override fun processResponse(response: ApiSuccessResponse<Volume>)
                     : Volume {
