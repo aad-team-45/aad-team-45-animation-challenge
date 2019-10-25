@@ -6,6 +6,11 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 
+/*
+* base recyclerview Adaptor with databinding support for the app
+*
+* */
+
 abstract class BaseAdaptor: RecyclerView.Adapter<AppViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AppViewHolder {

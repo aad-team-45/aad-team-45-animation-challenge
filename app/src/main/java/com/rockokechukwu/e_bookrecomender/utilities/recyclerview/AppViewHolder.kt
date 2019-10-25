@@ -4,6 +4,10 @@ import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 import com.rockokechukwu.e_bookrecomender.BR
 
+/*
+* resusable RecyclerView ViewHolder for entire application
+* */
+
 class AppViewHolder( private val binding: ViewDataBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
