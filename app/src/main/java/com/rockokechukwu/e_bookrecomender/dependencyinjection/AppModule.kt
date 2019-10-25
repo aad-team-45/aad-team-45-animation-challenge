@@ -5,6 +5,7 @@ import androidx.room.Room
 import com.rockokechukwu.e_bookrecomender.api.BookService
 import com.rockokechukwu.e_bookrecomender.db.EbookDao
 import com.rockokechukwu.e_bookrecomender.db.EbookDb
+import com.rockokechukwu.e_bookrecomender.utilities.BASE_URL
 import com.rockokechukwu.e_bookrecomender.utilities.LiveDataCallAdapterFactory
 import dagger.Module
 import dagger.Provides
@@ -18,7 +19,7 @@ class AppModule {
     @Provides
     fun provideBookService(): BookService {
         return Retrofit.Builder()
-            .baseUrl("")
+            .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(LiveDataCallAdapterFactory())
             .build()
