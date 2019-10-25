@@ -17,7 +17,8 @@ import com.rockokechukwu.e_bookrecomender.databinding.FragmentListOfEbookBinding
 import com.rockokechukwu.e_bookrecomender.dependencyinjection.Injectable
 import com.rockokechukwu.e_bookrecomender.repository.AppExecutors
 import com.rockokechukwu.e_bookrecomender.utilities.autoCleared
-import com.rockokechukwu.e_bookrecomender.vo.Resource
+import com.rockokechukwu.e_bookrecomender.utilities.hide
+import com.rockokechukwu.e_bookrecomender.utilities.show
 import com.rockokechukwu.e_bookrecomender.vo.Status
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_list_of_ebook.*
@@ -59,26 +60,23 @@ class ListOfEbookFragment : Fragment(), Injectable {
             false
         )
 
+        val adaptor = EbookItemAdaptor(R.layout.ebook_item)
+
         binding = dataBinding
 
-//        subcribeUi()
+
+        retrieveUiData(binding, adaptor)
 
         return dataBinding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        subcribeUi()
-        super.onViewCreated(view, savedInstanceState)
-    }
-
-    private fun subcribeUi(){
+    private fun retrieveUiData(binding: FragmentListOfEbookBinding, adaptor: EbookItemAdaptor){
         var fakeData = listOf<EbookItem>(EbookItem(listOf("cat beko", " ez lada"), "The lost book of Gundor"),
             EbookItem(listOf("esildor beko", " baku domica"), "The lost book of Gundor"),
             EbookItem(listOf("esildor beko", " baku domica"), "The lost book of Gundor")
             )
 
-        val adaptor = EbookItemAdaptor(R.layout.ebook_item)
-        recyclerview.adapter = adaptor
+        binding.recyclerview.adapter = adaptor
 
         adaptor.setData(fakeData)
 
@@ -87,15 +85,19 @@ class ListOfEbookFragment : Fragment(), Injectable {
 
             when(result.status){
                 Status.SUCCESS_DB  -> {
+                    binding.progressbar.hide()
                 }
 
                 Status.SUCCESS_NETWORK -> {
+                    binding.progressbar.hide()
                 }
 
                 Status.LOADING -> {
+                    binding.progressbar.show()
                 }
 
                 Status.ERROR -> {
+                    binding.progressbar.hide()
                 }
             }
         })
