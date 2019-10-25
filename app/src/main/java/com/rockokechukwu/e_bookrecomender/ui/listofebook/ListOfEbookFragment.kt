@@ -2,22 +2,25 @@ package com.rockokechukwu.e_bookrecomender.ui.listofebook
 
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingComponent
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-
 import com.rockokechukwu.e_bookrecomender.R
 import com.rockokechukwu.e_bookrecomender.binding.FragmentDataBindingComponent
 import com.rockokechukwu.e_bookrecomender.databinding.FragmentListOfEbookBinding
 import com.rockokechukwu.e_bookrecomender.dependencyinjection.Injectable
 import com.rockokechukwu.e_bookrecomender.repository.AppExecutors
 import com.rockokechukwu.e_bookrecomender.utilities.autoCleared
+import com.rockokechukwu.e_bookrecomender.vo.Resource
+import com.rockokechukwu.e_bookrecomender.vo.Status
+import dagger.android.support.AndroidSupportInjection
+import kotlinx.android.synthetic.main.fragment_list_of_ebook.*
 import javax.inject.Inject
 
 /**
@@ -38,6 +41,12 @@ class ListOfEbookFragment : Fragment(), Injectable {
 
     var dataBindingComponent: DataBindingComponent = FragmentDataBindingComponent(this)
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        AndroidSupportInjection.inject(this)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -52,8 +61,35 @@ class ListOfEbookFragment : Fragment(), Injectable {
 
         binding = dataBinding
 
+        subcribeUi()
+
         return dataBinding.root
     }
+
+    private fun subcribeUi(){
+        listOfEbookViewModel.results.observe(viewLifecycleOwner, Observer {
+            result ->
+
+            when(result.status){
+                Status.SUCCESS_DB -> {
+                    dummy_textvw.text = result.data?.get(0)?.id
+                }
+
+                Status.SUCCESS_NETWORK -> {
+                    dummy_textvw.text = result.data?.get(0)?.id
+                }
+
+                Status.LOADING -> {
+                    dummy_textvw.text = "Loading data ...."
+                }
+
+                Status.ERROR -> {
+                    dummy_textvw.text = result.message
+                }
+            }
+        })
+    }
+
 
 
 }

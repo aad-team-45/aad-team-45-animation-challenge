@@ -12,7 +12,6 @@ import com.rockokechukwu.e_bookrecomender.api.response.Ebook
  */
 
 @Dao
-
 abstract class EbookDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
