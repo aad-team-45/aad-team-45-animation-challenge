@@ -32,7 +32,7 @@ abstract class BaseAdaptor: RecyclerView.Adapter<AppViewHolder>() {
     override fun getItemViewType(position: Int) = getLayoutIdForPosition(position)
 
 
-    abstract fun getObjForPosition(position: Int)
+    abstract fun getObjForPosition(position: Int): Any
 
     /*generate layout ID for position, so it support different layout types depending on position*/
     abstract fun getLayoutIdForPosition(position: Int): Int
