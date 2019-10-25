@@ -56,5 +56,8 @@ data class Ebook (
             @SerializedName("text") val text : Boolean,
             @SerializedName("image") val image : Boolean
         )
+
+        val displayAuthorsFormat: String
+        get() = authors.joinToString(" & ")
     }
 }

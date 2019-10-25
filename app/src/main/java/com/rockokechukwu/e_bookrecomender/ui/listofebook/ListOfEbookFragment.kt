@@ -71,14 +71,9 @@ class ListOfEbookFragment : Fragment(), Injectable {
     }
 
     private fun retrieveUiData(binding: FragmentListOfEbookBinding, adaptor: EbookItemAdaptor){
-        var fakeData = listOf<EbookItem>(EbookItem(listOf("cat beko", " ez lada"), "The lost book of Gundor"),
-            EbookItem(listOf("esildor beko", " baku domica"), "The lost book of Gundor"),
-            EbookItem(listOf("esildor beko", " baku domica"), "The lost book of Gundor")
-            )
+
 
         binding.recyclerview.adapter = adaptor
-
-        adaptor.setData(fakeData)
 
         listOfEbookViewModel.results.observe(viewLifecycleOwner, Observer {
             result ->
@@ -86,23 +81,32 @@ class ListOfEbookFragment : Fragment(), Injectable {
             when(result.status){
                 Status.SUCCESS_DB  -> {
                     binding.progressbar.hide()
+                    // TODO : code to add data to recyclerview Adaptor
+//                    adaptor.setData(result.data)
+//                    binding.recyclerview.show()
                 }
 
                 Status.SUCCESS_NETWORK -> {
                     binding.progressbar.hide()
+                    // TODO : code to add data to recyclerview Adaptor
+//                    adaptor.setData(result)
+//                    binding.recyclerview.show()
                 }
 
                 Status.LOADING -> {
                     binding.progressbar.show()
+                    binding.recyclerview.hide()
                 }
 
                 Status.ERROR -> {
                     binding.progressbar.hide()
+                    // TODO: when error occurs send Toast message
+
                 }
             }
         })
-    }
 
+    }
 
 
 }

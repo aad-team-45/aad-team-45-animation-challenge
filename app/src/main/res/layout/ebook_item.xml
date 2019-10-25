@@ -10,7 +10,7 @@
 
         <variable
             name="obj"
-            type="com.rockokechukwu.e_bookrecomender.ui.listofebook.EbookItem" />
+            type="com.rockokechukwu.e_bookrecomender.api.response.Ebook" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -27,11 +27,12 @@
             android:layout_height="wrap_content">
 
             <TextView
+                android:textColor="@android:color/black"
                 android:id="@+id/book_title"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/hind_madurai_medium"
-                android:text="@{obj.title}"
+                android:text="@{obj.volumeInfo.title}"
                 android:textAlignment="center"
                 android:textSize="@dimen/item_title_txtsize"
                 android:textStyle="bold"
@@ -43,7 +44,7 @@
                 android:fontFamily="@font/hind_madurai_medium"
                 android:paddingStart="@dimen/item_author_txtpadding"
                 android:paddingEnd="@dimen/item_author_txtpadding"
-                android:text="@{obj.authors.toString()}"
+                android:text="@{obj.volumeInfo.displayAuthorsFormat}"
                 app:layout_constraintTop_toBottomOf="@+id/book_title"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

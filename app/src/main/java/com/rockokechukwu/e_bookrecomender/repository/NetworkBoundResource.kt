@@ -92,7 +92,6 @@ abstract class NetworkBoundResource<ResultType, RequestType>
                         }
                     }
                     is ApiErrorResponse -> {
-                        Log.d("TAGU", " it is error")
                         onFetchFailed()
                         result.addSource(dbSource) { newData ->
                             setValue(Resource.error(response.errorMessage, newData))
