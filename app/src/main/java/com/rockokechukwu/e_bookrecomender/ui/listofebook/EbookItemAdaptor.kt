@@ -20,5 +20,6 @@ class EbookItemAdaptor(private val layoutId : Int):
     fun setData(currentData: List<EbookItem>){
 
         data = currentData
+        notifyDataSetChanged()
     }
 }

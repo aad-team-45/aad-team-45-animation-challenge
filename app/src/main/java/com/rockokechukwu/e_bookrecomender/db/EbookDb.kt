@@ -7,7 +7,7 @@ import com.rockokechukwu.e_bookrecomender.api.response.Ebook
 /**
  * The Room database for this app.
  */
-@Database(entities = [Ebook::class], version = 2, exportSchema = false)
+@Database(entities = [Ebook::class], version = 1, exportSchema = false)
 abstract class EbookDb: RoomDatabase() {
     abstract fun ebookDao(): EbookDao
 }

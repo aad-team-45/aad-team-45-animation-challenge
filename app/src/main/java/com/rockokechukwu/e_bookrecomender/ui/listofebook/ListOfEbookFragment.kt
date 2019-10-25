@@ -61,30 +61,41 @@ class ListOfEbookFragment : Fragment(), Injectable {
 
         binding = dataBinding
 
-        subcribeUi()
+//        subcribeUi()
 
         return dataBinding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        subcribeUi()
+        super.onViewCreated(view, savedInstanceState)
+    }
+
     private fun subcribeUi(){
+        var fakeData = listOf<EbookItem>(EbookItem(listOf("cat beko", " ez lada"), "The lost book of Gundor"),
+            EbookItem(listOf("esildor beko", " baku domica"), "The lost book of Gundor"),
+            EbookItem(listOf("esildor beko", " baku domica"), "The lost book of Gundor")
+            )
+
+        val adaptor = EbookItemAdaptor(R.layout.ebook_item)
+        recyclerview.adapter = adaptor
+
+        adaptor.setData(fakeData)
+
         listOfEbookViewModel.results.observe(viewLifecycleOwner, Observer {
             result ->
 
             when(result.status){
-                Status.SUCCESS_DB -> {
-                    dummy_textvw.text = result.data?.get(0)?.id
+                Status.SUCCESS_DB  -> {
                 }
 
                 Status.SUCCESS_NETWORK -> {
-                    dummy_textvw.text = result.data?.get(0)?.id
                 }
 
                 Status.LOADING -> {
-                    dummy_textvw.text = "Loading data ...."
                 }
 
                 Status.ERROR -> {
-                    dummy_textvw.text = result.message
                 }
             }
         })
