@@ -12,9 +12,9 @@ import com.rockokechukwu.e_bookrecomender.vo.Resource
 import javax.inject.Inject
 
 class ListOfEbookViewModel @Inject constructor(repository: BookRepository) : ViewModel() {
-    private var _query = MutableLiveData<String>().apply {
-        value = "search items"
-    }
+
+
+    private var _query = MutableLiveData<String>()
 
     val results: LiveData<Resource<List<Ebook>>> = Transformations
         .switchMap(_query) { search ->
