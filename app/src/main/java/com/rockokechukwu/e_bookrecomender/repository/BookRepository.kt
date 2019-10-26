@@ -20,7 +20,7 @@ import javax.inject.Singleton
  */
 @Singleton
 class BookRepository @Inject constructor(
-    private val context: Context,
+//    private val context: Context,
     private val appExecutors: AppExecutors,
     private val ebookDao: EbookDao,
     private val ebookDb: EbookDb,

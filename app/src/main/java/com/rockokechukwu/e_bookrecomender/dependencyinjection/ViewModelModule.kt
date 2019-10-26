@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.rockokechukwu.e_bookrecomender.ui.ebookdetail.EbookDetailViewModel
 import com.rockokechukwu.e_bookrecomender.ui.listofebook.ListOfEbookViewModel
-import com.rockokechukwu.e_bookrecomender.viewmodel.viewModelFactory
+import com.rockokechukwu.e_bookrecomender.viewmodel.ViewModelFactory
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -24,5 +24,5 @@ abstract class ViewModelModule {
 
 
     @Binds
-    abstract fun bindViewModelFactory(factory: viewModelFactory): ViewModelProvider.Factory
+    abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
 }

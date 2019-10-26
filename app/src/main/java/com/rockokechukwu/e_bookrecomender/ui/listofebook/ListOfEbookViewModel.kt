@@ -1,5 +1,6 @@
 package com.rockokechukwu.e_bookrecomender.ui.listofebook
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
@@ -11,6 +12,8 @@ import com.rockokechukwu.e_bookrecomender.vo.Resource
 import javax.inject.Inject
 
 class ListOfEbookViewModel @Inject constructor(repository: BookRepository) : ViewModel() {
+
+
     private var _query = MutableLiveData<String>()
 
     val results: LiveData<Resource<List<Ebook>>> = Transformations
@@ -18,6 +21,7 @@ class ListOfEbookViewModel @Inject constructor(repository: BookRepository) : Vie
             if (search.isNullOrBlank()) {
                 AbsentLiveData.create()
             } else {
+                Log.d("TAGU","search : $search")
                 repository.getEbookList(search)
             }
         }

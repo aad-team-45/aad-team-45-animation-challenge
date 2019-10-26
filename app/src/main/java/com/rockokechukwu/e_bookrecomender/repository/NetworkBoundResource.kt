@@ -1,6 +1,7 @@
 package com.rockokechukwu.e_bookrecomender.repository
 
 import android.os.Handler
+import android.util.Log
 import androidx.annotation.MainThread
 import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
@@ -64,11 +65,13 @@ abstract class NetworkBoundResource<ResultType, RequestType>
         // Create inner function as we want to delay it.
         fun fetch() {
             result.addSource(apiResponse) { response ->
+
                 result.removeSource(apiResponse)
                 result.removeSource(dbSource)
                 when (response) {
                     is ApiSuccessResponse -> {
                         appExecutors.diskIO().execute {
+
                             saveCallResult(processResponse(response))
                             appExecutors.mainThread().execute {
                                 // We specially request a new live data,

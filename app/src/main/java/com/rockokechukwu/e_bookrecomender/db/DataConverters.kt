@@ -2,6 +2,7 @@ package com.rockokechukwu.e_bookrecomender.db
 
 import androidx.room.TypeConverter
 import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
 import com.rockokechukwu.e_bookrecomender.api.response.Ebook
 import com.rockokechukwu.e_bookrecomender.api.response.Ebook.VolumeInfo
@@ -32,9 +33,14 @@ class IndustryIdentifiersConverter {
 
 
 class OtherTypeConverter {
-    private val gson = Gson()
+//    private val gson = Gson()
+
+    private val gson = GsonBuilder().let {
+        it.serializeNulls().create()
+    }
+
     @TypeConverter
-    fun stringToList(data: String?): List<String> {
+    fun stringToList(data: String): List<String?> {
         if (data == null) {
             return Collections.emptyList()
         }
@@ -47,7 +53,8 @@ class OtherTypeConverter {
     }
 
     @TypeConverter
-    fun listToString(someObjects: List<String>): String {
+    fun listToString(someObjects: List<String?>): String {
+
         return gson.toJson(someObjects)
     }
 
